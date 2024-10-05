@@ -4,14 +4,20 @@
 
 # Learn more from ready-to-use templates: https://www.gitpod.io/docs/introduction/getting-started/quickstart
 
+jetbrains:
+  plugins:
+    - org.intellij.scala
 tasks:
     - init: |
           sdk install java 21.0.4-amzn
           sdk install sbt
           docker-compose up
+          nvm install 22
+          git submodule update --init --recursive
+          ./ui/build
 
     - name: Run
       command: |
-          sbt run
+          sbt compile
 
 
